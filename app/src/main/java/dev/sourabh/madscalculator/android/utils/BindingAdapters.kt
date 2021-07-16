@@ -1,5 +1,6 @@
 package dev.sourabh.madscalculator.android.utils
 
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.button.MaterialButton
@@ -9,7 +10,7 @@ class BindingAdapters {
     companion object {
         @JvmStatic
         @BindingAdapter("button_color")
-        fun setButtonColor(view: MaterialButton, type: Int = Constants.CALCULATOR_BUTTON_TYPE_NUMERICAL) {
+        fun setButtonColor(view: Button, type: Int) {
             val colorToSet = when(type){
                 Constants.CALCULATOR_BUTTON_TYPE_NUMERICAL -> ContextCompat.getColor(view.context, R.color.calculator_button_color)
                 Constants.CALCULATOR_BUTTON_TYPE_OPERATOR -> ContextCompat.getColor(view.context, R.color.calculator_operator_button_color)

@@ -2,19 +2,24 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="calculatorButton"
             type="dev.sourabh.madscalculator.android.models.CalculatorButton" />
     </data>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         xmlns:android="http://schemas.android.com/apk/res/android"
-        button_color="@{`` + calculatorButton.type}"
-        android:layout_width="50dp"
+        button_color="@{calculatorButton.type}"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/exp_color"
+        android:layout_margin="10dp"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_medium"
+        app:cornerRadius="24dp"
+        android:foreground="@drawable/ripple_effect"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/calculator_button_color"
         android:text="@{`` + calculatorButton.text}"
-        android:textColor="@color/calculator_button_text_color"
-        app:cornerRadius="24dp" />
+        android:textColor="@color/calculator_button_text_color" />
 </layout>
