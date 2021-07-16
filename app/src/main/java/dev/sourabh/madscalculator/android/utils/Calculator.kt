@@ -1,4 +1,4 @@
-package dev.sourabh.madscalculator.utils
+package dev.sourabh.madscalculator.android.utils
 
 class Calculator {
 

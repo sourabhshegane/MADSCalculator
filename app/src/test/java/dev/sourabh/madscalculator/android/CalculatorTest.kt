@@ -1,6 +1,6 @@
 package dev.sourabh.madscalculator.android
 
-import dev.sourabh.madscalculator.utils.Calculator
+import dev.sourabh.madscalculator.android.utils.Calculator
 import org.junit.Assert
 import org.junit.Test
 
