@@ -9,7 +9,6 @@
 
     <color name="app_black">#22252d</color>
     <color name="app_white">#ffffff</color>
-
-    <color name="color_keyboard_background">#f9f9f9</color>
-    <color name="exp_color">#FF000000</color>
+    <color name="color_keyboard_background">#282c35</color>
+    <color name="exp_color">#ffffff</color>
 </resources>
