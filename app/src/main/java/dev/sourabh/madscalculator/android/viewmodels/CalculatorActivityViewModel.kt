@@ -2,6 +2,7 @@ package dev.sourabh.madscalculator.android.viewmodels
 
 import androidx.lifecycle.ViewModel
 import dev.sourabh.madscalculator.android.models.CalculatorButton
+import dev.sourabh.madscalculator.android.models.Operation
 import dev.sourabh.madscalculator.android.utils.Constants
 
 class CalculatorActivityViewModel: ViewModel() {
@@ -59,16 +60,21 @@ class CalculatorActivityViewModel: ViewModel() {
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
         )
     )
+    private val operationsHistory = mutableListOf<Operation>()
 
     fun getCalculatorButtons() = calculatorButtons
 
-    private var previousResult = -1;
-
-    fun setPreviousResult(result: Int){
-        previousResult = result
-    }
-
     fun getPreviousResult(): Int{
-        return previousResult
+        return operationsHistory[operationsHistory.lastIndex].result
     }
+
+    fun addOperationToOperationHistory(expression: String, result: Int){
+        val operation = Operation(
+            expression,
+            result
+        )
+        operationsHistory.add(operation)
+    }
+
+    fun getOperationsHistory() = operationsHistory
 }

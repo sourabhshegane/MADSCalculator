@@ -75,7 +75,7 @@ class CalculatorActivity : AppCompatActivity(),
         if(result == -1){
             Toast.makeText(this@CalculatorActivity, "Please enter a valid expression", Toast.LENGTH_SHORT).show()
         }else{
-            viewModel.setPreviousResult(result)
+            viewModel.addOperationToOperationHistory(expression, result)
             binding.tvResult.text = "" + result
         }
     }
