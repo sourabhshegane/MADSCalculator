@@ -91,5 +91,42 @@
             app:layout_constraintBottom_toBottomOf="@+id/iv_history"
             app:layout_constraintEnd_toStartOf="@+id/iv_backspace"
             app:layout_constraintTop_toTopOf="@+id/iv_history" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_modes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/constraint_layout_rounded_corner"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_light_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_bright"
+                app:tint="@color/disabled_color" />
+
+            <ImageView
+                android:id="@+id/iv_dark_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_light_mode"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_night"
+                app:tint="@color/disabled_color" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

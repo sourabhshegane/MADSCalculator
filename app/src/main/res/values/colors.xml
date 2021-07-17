@@ -6,18 +6,15 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-
     <color name="color_splash_background">#ffffff</color>
-
     <color name="app_black">#22252d</color>
     <color name="app_white">#ffffff</color>
-
     <color name="color_keyboard_background">#f9f9f9</color>
     <color name="exp_color">#FF000000</color>
-
     <color name="calculator_button_color">#ffffff</color>
     <color name="calculator_button_text_color">#000000</color>
     <color name="calculator_operator_button_color">#26bea5</color>
     <color name="calculator_function_button_color">#ad5356</color>
     <color name="calculator_result_color">#4A934A</color>
+    <color name="disabled_color">#eaeaea</color>
 </resources>

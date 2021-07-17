@@ -16,4 +16,5 @@
     <color name="calculator_operator_button_color">#26bea5</color>
     <color name="calculator_function_button_color">#ad5356</color>
     <color name="calculator_result_color">#4A934A</color>
+    <color name="disabled_color">#eaeaea</color>
 </resources>

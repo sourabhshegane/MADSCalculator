@@ -1,9 +1,13 @@
 package dev.sourabh.madscalculator.android.activities
 
+import android.content.res.Configuration
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.sourabh.madscalculator.android.R
@@ -53,6 +57,48 @@ class CalculatorActivity : AppCompatActivity(),
             ivHistory.setOnClickListener {
                 showHistory()
             }
+
+            setUIModeIconTints()
+
+            ivLightMode.setOnClickListener {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                setUIModeIconTints()
+            }
+
+            ivDarkMode.setOnClickListener {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                setUIModeIconTints()
+            }
+        }
+    }
+
+    private fun ActivityCalculatorBinding.setUIModeIconTints() {
+        if (isDarkMode()) {
+            ivLightMode.setColorFilter(
+                ContextCompat.getColor(
+                    this@CalculatorActivity,
+                    R.color.disabled_color
+                ), PorterDuff.Mode.MULTIPLY
+            );
+            ivDarkMode.setColorFilter(
+                ContextCompat.getColor(
+                    this@CalculatorActivity,
+                    R.color.calculator_result_color
+                ), PorterDuff.Mode.MULTIPLY
+            );
+        } else {
+            ivDarkMode.setColorFilter(
+                ContextCompat.getColor(
+                    this@CalculatorActivity,
+                    R.color.disabled_color
+                ), PorterDuff.Mode.MULTIPLY
+            );
+            ivLightMode.setColorFilter(
+                ContextCompat.getColor(
+                    this@CalculatorActivity,
+                    R.color.calculator_result_color
+                ), PorterDuff.Mode.MULTIPLY
+            );
         }
     }
 
@@ -138,5 +184,17 @@ class CalculatorActivity : AppCompatActivity(),
         if(this::historyBottomSheet.isInitialized){
             historyBottomSheet.dismiss()
         }
+    }
+
+    private fun isDarkMode(): Boolean{
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                return true
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                return false
+            }
+        }
+        return false
     }
 }
