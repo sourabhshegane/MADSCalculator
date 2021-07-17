@@ -61,4 +61,14 @@ class CalculatorActivityViewModel: ViewModel() {
     )
 
     fun getCalculatorButtons() = calculatorButtons
+
+    private var previousResult = -1;
+
+    fun setPreviousResult(result: Int){
+        previousResult = result
+    }
+
+    fun getPreviousResult(): Int{
+        return previousResult
+    }
 }

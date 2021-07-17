@@ -1,11 +1,11 @@
 package dev.sourabh.madscalculator.android.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerViewAdapter
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
@@ -16,13 +16,14 @@ import dev.sourabh.madscalculator.android.viewmodels.CalculatorActivityViewModel
 class CalculatorActivity : AppCompatActivity(),
     CalculatorButtonsRecyclerViewAdapter.OnCalculatorButtonClicked {
 
+    private lateinit var viewModel: CalculatorActivityViewModel
     private lateinit var binding: ActivityCalculatorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculatorBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        val viewModel: CalculatorActivityViewModel by viewModels()
+        viewModel = ViewModelProvider(this).get(CalculatorActivityViewModel::class.java)
         initCalculatorButtonsRecyclerView(viewModel.getCalculatorButtons())
         initUI()
     }
@@ -62,6 +63,7 @@ class CalculatorActivity : AppCompatActivity(),
     private fun handleButtonClick(calculatorButton: CalculatorButton) {
         when(calculatorButton.text){
             "=" -> calculateAnswer()
+            "ANS" -> setPreviousResult()
             else -> binding.edInput.append(calculatorButton.text)
         }
     }
@@ -73,6 +75,7 @@ class CalculatorActivity : AppCompatActivity(),
         if(result == -1){
             Toast.makeText(this@CalculatorActivity, "Please enter a valid expression", Toast.LENGTH_SHORT).show()
         }else{
+            viewModel.setPreviousResult(result)
             binding.tvResult.text = "" + result
         }
     }
@@ -89,7 +92,10 @@ class CalculatorActivity : AppCompatActivity(),
         binding.tvResult.text = ""
     }
 
-    private fun getPreviousResult() {
-
+    private fun setPreviousResult() {
+        val previousResult = viewModel.getPreviousResult()
+        if(previousResult != -1){
+            binding.edInput.append("" + previousResult)
+        }
     }
 }
