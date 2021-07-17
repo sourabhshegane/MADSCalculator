@@ -48,6 +48,7 @@
             android:textColor="@color/exp_color"
             android:textCursorDrawable="@drawable/calculator_edit_text_cursor"
             android:textSize="32sp"
+            android:maxLines="3"
             app:layout_constraintBottom_toTopOf="@+id/tv_result"
             app:layout_constraintEnd_toEndOf="@+id/tv_result"
             app:layout_constraintHorizontal_bias="0.5"
