@@ -37,6 +37,13 @@ class CalculatorActivity : AppCompatActivity(),
         viewModel = ViewModelProvider(this).get(CalculatorActivityViewModel::class.java)
         initCalculatorButtonsRecyclerView(viewModel.getCalculatorButtons())
         initUI()
+        observeLatestOperations()
+    }
+
+    private fun observeLatestOperations() {
+        viewModel.getLatestOperations().observe(this, {
+            viewModel.addOperationsToOperationHistory(it)
+        })
     }
 
     private fun initUI() {
@@ -79,26 +86,26 @@ class CalculatorActivity : AppCompatActivity(),
                     this@CalculatorActivity,
                     R.color.disabled_color
                 ), PorterDuff.Mode.MULTIPLY
-            );
+            )
             ivDarkMode.setColorFilter(
                 ContextCompat.getColor(
                     this@CalculatorActivity,
                     R.color.calculator_result_color
                 ), PorterDuff.Mode.MULTIPLY
-            );
+            )
         } else {
             ivDarkMode.setColorFilter(
                 ContextCompat.getColor(
                     this@CalculatorActivity,
                     R.color.disabled_color
                 ), PorterDuff.Mode.MULTIPLY
-            );
+            )
             ivLightMode.setColorFilter(
                 ContextCompat.getColor(
                     this@CalculatorActivity,
                     R.color.calculator_result_color
                 ), PorterDuff.Mode.MULTIPLY
-            );
+            )
         }
     }
 
@@ -173,7 +180,7 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     override fun onExpressionFromHistoryRequested(requestedOperation: Operation) {
-        with(binding){
+        with(binding) {
             edInput.setText(requestedOperation.expression)
             tvResult.text = "" + requestedOperation.result
         }
@@ -181,12 +188,12 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun closeHistoryBottomSheet() {
-        if(this::historyBottomSheet.isInitialized){
+        if (this::historyBottomSheet.isInitialized) {
             historyBottomSheet.dismiss()
         }
     }
 
-    private fun isDarkMode(): Boolean{
+    private fun isDarkMode(): Boolean {
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
                 return true
