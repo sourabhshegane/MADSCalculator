@@ -15,7 +15,8 @@ import dev.sourabh.madscalculator.android.models.Operation
 
 
 class OperationsHistoryBottomSheet(
-    private val operations: List<Operation>
+    private val operations: List<Operation>,
+    private val onExpressionFromHistoryRequested: OnExpressionFromHistoryRequested
 ) : BottomSheetDialogFragment(),
     OperationsHistoryRecyclerViewAdapter.OnExpressionRequestedFromHistory {
 
@@ -57,7 +58,11 @@ class OperationsHistoryBottomSheet(
         }
     }
 
-    override fun onExpressionRequestedFromHistory(requestedOperation: Operation) {
+    interface OnExpressionFromHistoryRequested{
+        fun onExpressionFromHistoryRequested(requestedOperation: Operation)
+    }
 
+    override fun onExpressionRequestedFromHistory(requestedOperation: Operation) {
+        onExpressionFromHistoryRequested.onExpressionFromHistoryRequested(requestedOperation)
     }
 }

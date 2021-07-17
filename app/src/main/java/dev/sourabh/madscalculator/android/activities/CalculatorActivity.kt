@@ -10,12 +10,17 @@ import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerView
 import dev.sourabh.madscalculator.android.bottom_sheets.OperationsHistoryBottomSheet
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
 import dev.sourabh.madscalculator.android.models.CalculatorButton
+import dev.sourabh.madscalculator.android.models.Operation
 import dev.sourabh.madscalculator.android.utils.MADSCalculator
 import dev.sourabh.madscalculator.android.viewmodels.CalculatorActivityViewModel
 
-class CalculatorActivity : AppCompatActivity(),
-    CalculatorButtonsRecyclerViewAdapter.OnCalculatorButtonClicked {
 
+class CalculatorActivity : AppCompatActivity(),
+    CalculatorButtonsRecyclerViewAdapter.OnCalculatorButtonClicked,
+    OperationsHistoryBottomSheet.OnExpressionFromHistoryRequested {
+
+    private lateinit var historyBottomSheet: OperationsHistoryBottomSheet
+    private val INVALID_EXPRESSION = -1
     private lateinit var viewModel: CalculatorActivityViewModel
     private lateinit var binding: ActivityCalculatorBinding
 
@@ -52,8 +57,9 @@ class CalculatorActivity : AppCompatActivity(),
     private fun showHistory() {
         val history = viewModel.getOperationsHistory()
         if (history.isNotEmpty()) {
-            val historyBottomSheet = OperationsHistoryBottomSheet(
-                history
+            historyBottomSheet = OperationsHistoryBottomSheet(
+                history,
+                this@CalculatorActivity
             )
 
             historyBottomSheet.show(supportFragmentManager, "")
@@ -87,7 +93,7 @@ class CalculatorActivity : AppCompatActivity(),
         val expression = binding.edInput.text.toString().trim()
         val calculator = MADSCalculator()
         val result = calculator.calculate(expression)
-        if (result == -1) {
+        if (result == INVALID_EXPRESSION) {
             Toast.makeText(
                 this@CalculatorActivity,
                 "Please enter a valid expression",
@@ -113,8 +119,22 @@ class CalculatorActivity : AppCompatActivity(),
 
     private fun setPreviousResult() {
         val previousResult = viewModel.getPreviousResult()
-        if (previousResult != -1) {
+        if (previousResult != INVALID_EXPRESSION) {
             binding.edInput.append("" + previousResult)
+        }
+    }
+
+    override fun onExpressionFromHistoryRequested(requestedOperation: Operation) {
+        with(binding){
+            edInput.setText(requestedOperation.expression)
+            tvResult.text = "" + requestedOperation.result
+        }
+        closeHistoryBottomSheet()
+    }
+
+    private fun closeHistoryBottomSheet() {
+        if(this::historyBottomSheet.isInitialized){
+            historyBottomSheet.dismiss()
         }
     }
 }
