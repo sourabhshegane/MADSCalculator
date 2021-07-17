@@ -3,7 +3,7 @@
 
 Login Credentials:
 Email Address: x@y.com
-Password: root
+\nPassword: root
 
 [Check MADS Calculator in action here](https://vimeo.com/576158952)
 
