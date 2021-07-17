@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "269750928457",
+    "project_id": "madscalculator-12d5f",
+    "storage_bucket": "madscalculator-12d5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269750928457:android:e5464057903a727e30eb98",
+        "android_client_info": {
+          "package_name": "dev.sourabh.madscalculator.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269750928457-f7prn6k5gntsbr9m51ss62unhoa20gg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf9gkY_raMHjJcNvtM9FYYAn7fUle7QG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269750928457-f7prn6k5gntsbr9m51ss62unhoa20gg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

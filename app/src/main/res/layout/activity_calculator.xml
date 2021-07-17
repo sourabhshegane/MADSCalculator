@@ -60,10 +60,10 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
             android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toTopOf="@+id/rv_buttons"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
             app:layout_constraintStart_toStartOf="@+id/rv_buttons"
+            app:layout_constraintTop_toTopOf="@+id/btn_clear"
             app:tint="@color/calculator_function_button_color" />
 
         <ImageButton
@@ -74,23 +74,23 @@
             android:background="@android:color/transparent"
             android:foreground="@drawable/square_ripple_effect"
             android:src="@drawable/ic_backspace"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_history"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
             app:layout_constraintEnd_toEndOf="@+id/rv_buttons"
-            app:layout_constraintTop_toTopOf="@+id/iv_history"
+            app:layout_constraintTop_toTopOf="@+id/btn_clear"
             app:tint="@color/calculator_function_button_color" />
 
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="64dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/calculator_function_button_color"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/clr"
             android:textColor="@color/calculator_button_color"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_history"
-            app:layout_constraintEnd_toStartOf="@+id/iv_backspace"
-            app:layout_constraintTop_toTopOf="@+id/iv_history" />
+            app:layout_constraintBottom_toTopOf="@+id/rv_buttons"
+            app:layout_constraintEnd_toStartOf="@+id/iv_backspace" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_modes"
