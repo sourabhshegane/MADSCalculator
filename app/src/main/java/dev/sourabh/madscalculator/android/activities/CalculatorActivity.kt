@@ -10,6 +10,7 @@ import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerView
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
 import dev.sourabh.madscalculator.android.models.CalculatorButton
 import dev.sourabh.madscalculator.android.viewmodels.CalculatorActivityViewModel
+import java.lang.StringBuilder
 
 class CalculatorActivity : AppCompatActivity(),
     CalculatorButtonsRecyclerViewAdapter.OnCalculatorButtonClicked {
@@ -31,6 +32,14 @@ class CalculatorActivity : AppCompatActivity(),
                 showSoftInputOnFocus = false
                 requestFocus()
             }
+
+            ivBackspace.setOnClickListener {
+                backSpace()
+            }
+
+            btnClear.setOnClickListener {
+                clearInput()
+            }
         }
     }
 
@@ -51,9 +60,6 @@ class CalculatorActivity : AppCompatActivity(),
 
     private fun handleButtonClick(calculatorButton: CalculatorButton) {
         when(calculatorButton.text){
-            "ANS" -> getPreviousResult()
-            "CLR" -> clearInput()
-            "BKSPC" -> backSpace()
             "=" -> calculateAnswer()
             else -> binding.edInput.append(calculatorButton.text)
         }
@@ -64,11 +70,14 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun backSpace() {
-
+        val currentInput = binding.edInput.text.toString()
+        val inputAfterBackspace = currentInput.dropLast(1)
+        binding.edInput.setText(inputAfterBackspace)
+        binding.edInput.setSelection(binding.edInput.text.toString().length)
     }
 
     private fun clearInput() {
-
+        binding.edInput.text.clear()
     }
 
     private fun getPreviousResult() {

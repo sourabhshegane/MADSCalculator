@@ -32,7 +32,7 @@
             android:letterSpacing="0.1"
             android:textColor="@color/exp_color"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/iv_backspace"
+            app:layout_constraintBottom_toTopOf="@+id/iv_history"
             app:layout_constraintEnd_toEndOf="@+id/rv_buttons"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/rv_buttons"
@@ -57,7 +57,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <ImageView
-            android:id="@+id/iv_backspace"
+            android:id="@+id/iv_history"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="16dp"
@@ -68,16 +68,16 @@
             app:tint="@color/calculator_function_button_color" />
 
         <ImageButton
-            android:id="@+id/iv_history"
+            android:id="@+id/iv_backspace"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:foreground="@drawable/square_ripple_effect"
             android:src="@drawable/ic_backspace"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_backspace"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_history"
             app:layout_constraintEnd_toEndOf="@+id/rv_buttons"
-            app:layout_constraintTop_toTopOf="@+id/iv_backspace"
+            app:layout_constraintTop_toTopOf="@+id/iv_history"
             app:tint="@color/calculator_function_button_color" />
 
         <Button
@@ -89,8 +89,8 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/clr"
             android:textColor="@color/calculator_button_color"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_backspace"
-            app:layout_constraintEnd_toStartOf="@+id/iv_history"
-            app:layout_constraintTop_toTopOf="@+id/iv_backspace" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_history"
+            app:layout_constraintEnd_toStartOf="@+id/iv_backspace"
+            app:layout_constraintTop_toTopOf="@+id/iv_history" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
