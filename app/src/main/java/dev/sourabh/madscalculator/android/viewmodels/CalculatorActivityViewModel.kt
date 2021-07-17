@@ -3,9 +3,16 @@ package dev.sourabh.madscalculator.android.viewmodels
 import androidx.lifecycle.ViewModel
 import dev.sourabh.madscalculator.android.models.CalculatorButton
 import dev.sourabh.madscalculator.android.models.Operation
+import dev.sourabh.madscalculator.android.repository.CalculatorActivityRepository
 import dev.sourabh.madscalculator.android.utils.Constants
 
-class CalculatorActivityViewModel: ViewModel() {
+class CalculatorActivityViewModel : ViewModel() {
+
+    private val repository = CalculatorActivityRepository()
+
+    init {
+        repository.getPreviousOperations()
+    }
 
     private val calculatorButtons = listOf(
         CalculatorButton(
@@ -20,7 +27,7 @@ class CalculatorActivityViewModel: ViewModel() {
         CalculatorButton(
             "/",
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
-        ),CalculatorButton(
+        ), CalculatorButton(
             "4"
         ),
         CalculatorButton(
@@ -32,7 +39,7 @@ class CalculatorActivityViewModel: ViewModel() {
         CalculatorButton(
             "*",
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
-        ),CalculatorButton(
+        ), CalculatorButton(
             "7"
         ),
         CalculatorButton(
@@ -44,7 +51,7 @@ class CalculatorActivityViewModel: ViewModel() {
         CalculatorButton(
             "-",
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
-        ),CalculatorButton(
+        ), CalculatorButton(
             "ANS",
             Constants.CALCULATOR_BUTTON_TYPE_FUNCTION
         ),
@@ -60,24 +67,34 @@ class CalculatorActivityViewModel: ViewModel() {
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
         )
     )
+
+
     private val operationsHistory = mutableListOf<Operation>()
+
+    fun getLatestOperations() = repository.getNewOperationsLiveData()
 
     fun getCalculatorButtons() = calculatorButtons
 
-    fun getPreviousResult(): Int{
+    fun getPreviousResult(): Int {
         return operationsHistory[operationsHistory.lastIndex].result
     }
 
-    fun addOperationToOperationHistory(expression: String, result: Int){
+    fun addOperationToOperationHistory(expression: String, result: Int) {
         val operation = Operation(
             expression,
             result
         )
-        operationsHistory.add(operation)
+        //operationsHistory.add(operation)
+        repository.saveOperationToDatabase(operation)
     }
 
-    fun getOperationsHistory(): List<Operation>{
-        return if(operationsHistory.size > 10)
+    fun addOperationsToOperationHistory(latestOperations: List<Operation>){
+        operationsHistory.clear()
+        operationsHistory.addAll(latestOperations)
+    }
+
+    fun getOperationsHistory(): List<Operation> {
+        return if (operationsHistory.size >= 10)
             operationsHistory.reversed().subList(0, 9)
         else
             operationsHistory.reversed()

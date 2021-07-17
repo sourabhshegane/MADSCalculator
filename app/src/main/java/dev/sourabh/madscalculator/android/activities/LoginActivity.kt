@@ -1,18 +1,17 @@
 package dev.sourabh.madscalculator.android.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import dev.sourabh.madscalculator.android.R
 import dev.sourabh.madscalculator.android.databinding.ActivityLoginBinding
-import dev.sourabh.madscalculator.android.viewmodels.CalculatorActivityViewModel
 import dev.sourabh.madscalculator.android.viewmodels.LoginActivityViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -36,12 +35,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        viewModel.userAuthLiveData().observe(this, {areLoginCredentialsCorrect ->
+        viewModel.userAuthLiveData().observe(this, { areLoginCredentialsCorrect ->
             Log.d("XXX", "TRGG")
             binding.progressBar.visibility = View.GONE
-            if(areLoginCredentialsCorrect){
+            if (areLoginCredentialsCorrect) {
                 goToCalculatorActivity()
-            }else{
+            } else {
                 Toast.makeText(this, "Please enter correct credentials", Toast.LENGTH_SHORT).show()
             }
         })
@@ -68,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initEditTextListeners() {
-        with(binding){
+        with(binding) {
             editTextTextEmailAddress.addTextChangedListener {
                 viewModel.setEmailAddress(it.toString())
             }

@@ -1,6 +1,5 @@
 package dev.sourabh.madscalculator.android.utils
 
-import java.lang.Exception
 import java.util.*
 
 class MADSCalculator {
@@ -39,7 +38,7 @@ class MADSCalculator {
 
     fun calculate(exp: String): Int {
         try {
-            if(isExpressionValid(exp)){
+            if (isExpressionValid(exp)) {
                 val numericalString = StringBuilder()
                 for (i in 0 until exp.length) {
                     val currentCharacter = exp[i]
@@ -77,10 +76,10 @@ class MADSCalculator {
                 }
 
                 return operandStack.pop()
-            }else{
+            } else {
                 return -1
             }
-        }catch (exception: Exception){
+        } catch (exception: Exception) {
             return -1
         }
     }
@@ -93,12 +92,18 @@ class MADSCalculator {
         return result
     }
 
-    private fun isExpressionValid(expressionToCheck: String): Boolean{
-        if(expressionToCheck.endsWith("+") || expressionToCheck.endsWith("-") || expressionToCheck.endsWith("*") || expressionToCheck.endsWith("/")){
+    private fun isExpressionValid(expressionToCheck: String): Boolean {
+        if (expressionToCheck.endsWith("+") || expressionToCheck.endsWith("-") || expressionToCheck.endsWith(
+                "*"
+            ) || expressionToCheck.endsWith("/")
+        ) {
             return false
         }
 
-        if (expressionToCheck.startsWith("+") || expressionToCheck.startsWith("-") || expressionToCheck.startsWith("*") || expressionToCheck.startsWith("/")){
+        if (expressionToCheck.startsWith("+") || expressionToCheck.startsWith("-") || expressionToCheck.startsWith(
+                "*"
+            ) || expressionToCheck.startsWith("/")
+        ) {
             return false
         }
 

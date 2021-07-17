@@ -2,7 +2,10 @@ package dev.sourabh.madscalculator.android.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import dev.sourabh.madscalculator.android.models.User
 
 class LoginActivityRepository {
@@ -11,23 +14,25 @@ class LoginActivityRepository {
 
     fun loginUser(email: String, password: String) {
         try {
-            val firebaseDatabaseReference = FirebaseDatabase.getInstance("https://madscalculator-12d5f-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
-            firebaseDatabaseReference.child("login").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val user = dataSnapshot.getValue(User::class.java)
-                    user?.let {
-                        if (email == user.email && user.password == password) {
-                            userAuthLiveData.postValue(true)
-                        } else {
-                            userAuthLiveData.postValue(false)
+            val firebaseDatabaseReference =
+                FirebaseDatabase.getInstance("https://madscalculator-12d5f-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
+            firebaseDatabaseReference.child("login")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val user = dataSnapshot.getValue(User::class.java)
+                        user?.let {
+                            if (email == user.email && user.password == password) {
+                                userAuthLiveData.postValue(true)
+                            } else {
+                                userAuthLiveData.postValue(false)
+                            }
                         }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    userAuthLiveData.postValue(false)
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+                        userAuthLiveData.postValue(false)
+                    }
+                })
         } catch (e: Exception) {
             userAuthLiveData.postValue(false)
         }
