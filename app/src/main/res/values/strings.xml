@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MADS Calculator</string>
     <string name="clr">CLR</string>
+    <string name="ans">ANS</string>
+    <string name="equals_sign">=</string>
 </resources>

@@ -4,11 +4,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/flytbase_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/flytbase_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MADSCalculator">
+        android:theme="@style/Theme.MADSCalculatorSplashScreen">
         <activity android:name=".activities.CalculatorActivity" android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,5 +17,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

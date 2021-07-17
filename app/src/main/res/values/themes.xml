@@ -1,24 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Theme.MADSCalculator" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/app_white</item>
         <item name="colorPrimaryVariant">@color/app_white</item>
         <item name="colorOnPrimary">@color/app_black</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/app_white</item>
         <item name="colorSecondaryVariant">@color/app_white</item>
         <item name="colorOnSecondary">@color/app_black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar">true</item>
-
     </style>
 
-    <style name="CalculatorEditTextStyle" parent="@android:style/Widget.Holo.Light.EditText">
-        <item name="android:background">@android:drawable/editbox_background_normal</item>
-        <item name="android:textCursorDrawable">@layout/vertical_line</item>
-        <item name="android:height">40dp</item>
+    <style name="Theme.MADSCalculatorSplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

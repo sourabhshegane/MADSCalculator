@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import dev.sourabh.madscalculator.android.R
 import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerViewAdapter
 import dev.sourabh.madscalculator.android.bottom_sheets.OperationsHistoryBottomSheet
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
@@ -26,6 +27,7 @@ class CalculatorActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_MADSCalculator)
         binding = ActivityCalculatorBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         viewModel = ViewModelProvider(this).get(CalculatorActivityViewModel::class.java)
@@ -83,8 +85,8 @@ class CalculatorActivity : AppCompatActivity(),
 
     private fun handleButtonClick(calculatorButton: CalculatorButton) {
         when (calculatorButton.text) {
-            "=" -> calculateAnswer()
-            "ANS" -> setPreviousResult()
+            getString(R.string.equals_sign) -> calculateAnswer()
+            getString(R.string.ans) -> setPreviousResult()
             else -> binding.edInput.append(calculatorButton.text)
         }
     }
