@@ -76,7 +76,9 @@ class CalculatorActivityViewModel : ViewModel() {
     fun getCalculatorButtons() = calculatorButtons
 
     fun getPreviousResult(): Int {
-        return operationsHistory[operationsHistory.lastIndex].result
+        if(operationsHistory != null && operationsHistory.isNotEmpty())
+            return operationsHistory[operationsHistory.lastIndex].result
+        return -1
     }
 
     fun addOperationToOperationHistory(expression: String, result: Int) {
