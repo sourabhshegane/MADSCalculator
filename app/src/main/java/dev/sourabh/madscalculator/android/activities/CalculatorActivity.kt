@@ -3,11 +3,11 @@ package dev.sourabh.madscalculator.android.activities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerViewAdapter
+import dev.sourabh.madscalculator.android.bottom_sheets.OperationsHistoryBottomSheet
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
 import dev.sourabh.madscalculator.android.models.CalculatorButton
 import dev.sourabh.madscalculator.android.utils.MADSCalculator
@@ -29,7 +29,7 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun initUI() {
-        with(binding){
+        with(binding) {
             edInput.apply {
                 showSoftInputOnFocus = false
                 requestFocus()
@@ -42,6 +42,21 @@ class CalculatorActivity : AppCompatActivity(),
             btnClear.setOnClickListener {
                 clearInput()
             }
+
+            ivHistory.setOnClickListener {
+                showHistory()
+            }
+        }
+    }
+
+    private fun showHistory() {
+        val history = viewModel.getOperationsHistory()
+        if (history.isNotEmpty()) {
+            val historyBottomSheet = OperationsHistoryBottomSheet(
+                history
+            )
+
+            historyBottomSheet.show(supportFragmentManager, "")
         }
     }
 
@@ -61,7 +76,7 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun handleButtonClick(calculatorButton: CalculatorButton) {
-        when(calculatorButton.text){
+        when (calculatorButton.text) {
             "=" -> calculateAnswer()
             "ANS" -> setPreviousResult()
             else -> binding.edInput.append(calculatorButton.text)
@@ -72,9 +87,13 @@ class CalculatorActivity : AppCompatActivity(),
         val expression = binding.edInput.text.toString().trim()
         val calculator = MADSCalculator()
         val result = calculator.calculate(expression)
-        if(result == -1){
-            Toast.makeText(this@CalculatorActivity, "Please enter a valid expression", Toast.LENGTH_SHORT).show()
-        }else{
+        if (result == -1) {
+            Toast.makeText(
+                this@CalculatorActivity,
+                "Please enter a valid expression",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
             viewModel.addOperationToOperationHistory(expression, result)
             binding.tvResult.text = "" + result
         }
@@ -94,7 +113,7 @@ class CalculatorActivity : AppCompatActivity(),
 
     private fun setPreviousResult() {
         val previousResult = viewModel.getPreviousResult()
-        if(previousResult != -1){
+        if (previousResult != -1) {
             binding.edInput.append("" + previousResult)
         }
     }
