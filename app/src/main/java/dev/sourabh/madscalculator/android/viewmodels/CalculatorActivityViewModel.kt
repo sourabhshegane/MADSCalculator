@@ -76,5 +76,10 @@ class CalculatorActivityViewModel: ViewModel() {
         operationsHistory.add(operation)
     }
 
-    fun getOperationsHistory() = operationsHistory
+    fun getOperationsHistory(): List<Operation>{
+        return if(operationsHistory.size > 10)
+            operationsHistory.reversed().subList(0, 9)
+        else
+            operationsHistory.reversed()
+    }
 }

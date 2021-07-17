@@ -48,12 +48,9 @@ class OperationsHistoryBottomSheet(
                         DividerItemDecoration.VERTICAL
                     )
                 )
-                val duplicates = mutableListOf<Operation>()
-                duplicates.addAll(operations)
-                duplicates.addAll(operations)
 
                 adapter = OperationsHistoryRecyclerViewAdapter(
-                    duplicates,
+                    operations,
                     this@OperationsHistoryBottomSheet
                 )
             }
