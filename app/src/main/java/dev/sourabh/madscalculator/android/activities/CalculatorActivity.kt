@@ -26,7 +26,12 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun initUI() {
-
+        with(binding){
+            edInput.apply {
+                showSoftInputOnFocus = false
+                requestFocus()
+            }
+        }
     }
 
     private fun initCalculatorButtonsRecyclerView(calculatorButtons: List<CalculatorButton>) {
@@ -41,6 +46,32 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     override fun onCalculatorButtonClicked(calculatorButton: CalculatorButton) {
+        handleButtonClick(calculatorButton)
+    }
+
+    private fun handleButtonClick(calculatorButton: CalculatorButton) {
+        when(calculatorButton.text){
+            "ANS" -> getPreviousResult()
+            "CLR" -> clearInput()
+            "BKSPC" -> backSpace()
+            "=" -> calculateAnswer()
+            else -> binding.edInput.append(calculatorButton.text)
+        }
+    }
+
+    private fun calculateAnswer() {
+
+    }
+
+    private fun backSpace() {
+
+    }
+
+    private fun clearInput() {
+
+    }
+
+    private fun getPreviousResult() {
 
     }
 }

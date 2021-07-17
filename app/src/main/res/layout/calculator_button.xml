@@ -17,7 +17,7 @@
         android:textSize="18sp"
         android:fontFamily="@font/roboto_medium"
         app:cornerRadius="24dp"
-        android:foreground="@drawable/ripple_effect"
+        android:foreground="@drawable/circular_ripple_effect"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/calculator_button_color"
         android:text="@{`` + calculatorButton.text}"

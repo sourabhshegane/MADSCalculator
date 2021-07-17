@@ -57,7 +57,7 @@ class CalculatorActivityViewModel: ViewModel() {
         CalculatorButton(
             "+",
             Constants.CALCULATOR_BUTTON_TYPE_OPERATOR
-        ),
+        )
     )
 
     fun getCalculatorButtons() = calculatorButtons

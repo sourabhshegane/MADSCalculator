@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,44 +13,84 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/top_rounded_corners"
-            android:padding="20dp"
             android:backgroundTint="@color/color_keyboard_background"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="end"
             android:letterSpacing="0.1"
-            android:text="19875"
             android:textColor="@color/exp_color"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/rv_buttons"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/rv_buttons" />
+            app:layout_constraintBottom_toTopOf="@+id/iv_backspace"
+            app:layout_constraintEnd_toEndOf="@+id/rv_buttons"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/rv_buttons"
+            app:layout_constraintTop_toBottomOf="@+id/ed_input" />
 
         <EditText
-            android:id="@+id/textView2"
+            android:id="@+id/ed_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:background="@null"
             android:fontFamily="@font/roboto_medium"
             android:gravity="end"
             android:letterSpacing="0.2"
-            android:text="306 x 42"
-            android:background="@android:color/transparent"
             android:textColor="@color/exp_color"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView" />
+            android:textCursorDrawable="@drawable/calculator_edit_text_cursor"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_result"
+            app:layout_constraintEnd_toEndOf="@+id/tv_result"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_result"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/iv_backspace"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_history"
+            app:layout_constraintBottom_toTopOf="@+id/rv_buttons"
+            app:layout_constraintStart_toStartOf="@+id/rv_buttons"
+            app:tint="@color/calculator_function_button_color" />
+
+        <ImageButton
+            android:id="@+id/iv_history"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:foreground="@drawable/square_ripple_effect"
+            android:src="@drawable/ic_backspace"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_backspace"
+            app:layout_constraintEnd_toEndOf="@+id/rv_buttons"
+            app:layout_constraintTop_toTopOf="@+id/iv_backspace"
+            app:tint="@color/calculator_function_button_color" />
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="64dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/calculator_function_button_color"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/clr"
+            android:textColor="@color/calculator_button_color"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_backspace"
+            app:layout_constraintEnd_toStartOf="@+id/iv_history"
+            app:layout_constraintTop_toTopOf="@+id/iv_backspace" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

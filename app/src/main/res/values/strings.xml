@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MADS Calculator</string>
+    <string name="clr">CLR</string>
 </resources>
