@@ -12,7 +12,7 @@ class BindingAdapters {
         @BindingAdapter("button_color")
         fun setButtonColor(view: Button, type: Int) {
             val colorToSet = when(type){
-                Constants.CALCULATOR_BUTTON_TYPE_NUMERICAL -> ContextCompat.getColor(view.context, R.color.calculator_button_color)
+                Constants.CALCULATOR_BUTTON_TYPE_NUMERICAL -> ContextCompat.getColor(view.context, R.color.calculator_button_text_color)
                 Constants.CALCULATOR_BUTTON_TYPE_OPERATOR -> ContextCompat.getColor(view.context, R.color.calculator_operator_button_color)
                 else -> ContextCompat.getColor(view.context, R.color.calculator_function_button_color)
             }
