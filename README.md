@@ -1,9 +1,9 @@
 # MADSCalculator
 
 
-Login Credentials:
-Email Address: x@y.com
-\nPassword: root
+Login Credentials: <br />
+Email Address: x@y.com <br />
+Password: root <br />
 
 [Check MADS Calculator in action here](https://vimeo.com/576158952)
 
