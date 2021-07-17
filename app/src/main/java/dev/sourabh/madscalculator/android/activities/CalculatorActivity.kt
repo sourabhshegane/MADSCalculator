@@ -1,16 +1,17 @@
 package dev.sourabh.madscalculator.android.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.widget.GridLayout
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.sourabh.madscalculator.android.adapters.CalculatorButtonsRecyclerViewAdapter
 import dev.sourabh.madscalculator.android.databinding.ActivityCalculatorBinding
 import dev.sourabh.madscalculator.android.models.CalculatorButton
+import dev.sourabh.madscalculator.android.utils.MADSCalculator
 import dev.sourabh.madscalculator.android.viewmodels.CalculatorActivityViewModel
-import java.lang.StringBuilder
 
 class CalculatorActivity : AppCompatActivity(),
     CalculatorButtonsRecyclerViewAdapter.OnCalculatorButtonClicked {
@@ -66,7 +67,14 @@ class CalculatorActivity : AppCompatActivity(),
     }
 
     private fun calculateAnswer() {
-
+        val expression = binding.edInput.text.toString().trim()
+        val calculator = MADSCalculator()
+        val result = calculator.calculate(expression)
+        if(result == -1){
+            Toast.makeText(this@CalculatorActivity, "Please enter a valid expression", Toast.LENGTH_SHORT).show()
+        }else{
+            binding.tvResult.text = "" + result
+        }
     }
 
     private fun backSpace() {
@@ -78,6 +86,7 @@ class CalculatorActivity : AppCompatActivity(),
 
     private fun clearInput() {
         binding.edInput.text.clear()
+        binding.tvResult.text = ""
     }
 
     private fun getPreviousResult() {

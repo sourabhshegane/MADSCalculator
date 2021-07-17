@@ -3,7 +3,7 @@ package dev.sourabh.madscalculator.android.utils
 import java.lang.Exception
 import java.util.*
 
-class Calculator {
+class MADSCalculator {
 
     var operatorStack = ArrayDeque<Char>()
     var operandStack = ArrayDeque<Int>()

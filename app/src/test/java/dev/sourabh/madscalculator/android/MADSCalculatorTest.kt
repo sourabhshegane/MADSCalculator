@@ -1,12 +1,12 @@
 package dev.sourabh.madscalculator.android
 
-import dev.sourabh.madscalculator.android.utils.Calculator
+import dev.sourabh.madscalculator.android.utils.MADSCalculator
 import org.junit.Assert
 import org.junit.Test
 
-class CalculatorTest {
+class MADSCalculatorTest {
 
-    val calculator = Calculator()
+    val calculator = MADSCalculator()
 
     @Test
     fun checkSimpleExpression() {
